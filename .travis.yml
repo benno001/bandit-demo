@@ -7,8 +7,7 @@ jobs:
   include:
     - stage: lint
       script: docker run --rm -i hadolint/hadolint < Dockerfile
-    - stage: build
-      script: docker build . -t benno001/bandit-demo:latest
-    - stage: deploy
-      script: bash docker_push.sh
+    - stage: build and push
+      script: docker build . -t benno001/bandit-demo:latest && bash docker_push.sh
       if: branch = master
+      
