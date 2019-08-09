@@ -10,7 +10,7 @@ jobs:
     - stage: build and push
       script:
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-        - docker build . -t benno001/bandit-demo:latest && bash docker_push.sh
+        - docker build . -t benno001/bandit-demo:latest
         - docker push benno001/bandit-demo:latest
       if: branch = master
       
