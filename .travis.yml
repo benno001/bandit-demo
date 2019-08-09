@@ -1,14 +1,14 @@
+dist: trusty
+
 services:
   - docker
 
-build:
-  - docker build . -t benno001/bandit-demo
-
-lint:
-  - docker run --rm -i hadolint/hadolint < Dockerfile
-
-deploy:
-  provider: script
-  script: bash docker_push.sh
-  on:
-    branch: master
+jobs:
+  include:
+    - stage: lint
+      script: docker run --rm -i hadolint/hadolint < Dockerfile
+    - stage: build
+      script: docker build . -t benno001/bandit-demo
+    - stage: deploy
+      script: bash docker_push.sh
+      if: branch = master
