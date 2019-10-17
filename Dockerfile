@@ -2,6 +2,9 @@ FROM python:3.7.4-buster
 
 RUN useradd -ms /bin/bash bandit
 
+# Get some basics for checking solutions
+RUN apt-get update && apt-get -y install jq
+
 USER bandit
 WORKDIR /home/bandit
 
